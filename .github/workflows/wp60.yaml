@@ -1,4 +1,4 @@
-name: WP_Latest
+name: WP_6_0
 
 on:
   push:
@@ -53,6 +53,8 @@ jobs:
         run: >
           rm -rf composer.lock 
           && composer clearcache
+          && composer require php-stubs/wordpress-stubs:6.0.0 --dev --no-update
+          && composer require roots/wordpress:6.0 --dev --no-update
           && composer update --no-cache
 
       - name: Run Tests on Latest Version - WP6.0
@@ -61,5 +63,5 @@ jobs:
         run: composer all
 
       - name: Codecov
-        run: bash <(curl -s https://codecov.io/bash) -t ${{ secrets.REGISTERABLES_CODECOV }}
+        run: bash <(curl -s https://codecov.io/bash) -t ${{ secrets.QUEUE_CODECOV }}
  

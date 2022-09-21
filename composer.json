@@ -39,7 +39,7 @@
         "php-stubs/woocommerce-stubs": "dev-master"
     },
     "require": {
-        "php": ">=7.1.0",
+        "php": ">=7.2.0",
         "pinkcrab/perique-framework-core": "^1",
         "psr/event-dispatcher": "1.0.x-dev",
         "woocommerce/action-scheduler": "dev-trunk"
