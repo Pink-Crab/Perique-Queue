@@ -35,15 +35,19 @@
         "yoast/phpunit-polyfills": "^0.2.0 || ^1.0.0",
         "symfony/var-dumper": "*",
         "gin0115/wpunit-helpers": "~1",
-        "vlucas/phpdotenv": "^5.4"
+        "vlucas/phpdotenv": "^5.4",
+        "php-stubs/woocommerce-stubs": "dev-master"
     },
     "require": {
         "php": ">=7.1.0",
         "pinkcrab/perique-framework-core": "^1",
-        "psr/event-dispatcher": "1.0.x-dev"
+        "psr/event-dispatcher": "1.0.x-dev",
+        "woocommerce/action-scheduler": "dev-trunk"
     },
     "scripts": {
         "test": "./vendor/bin/phpunit --coverage-clover clover.xml --testdox --colors=always",
+        "test:functional": "./vendor/bin/phpunit --testdox --colors=always --group functional",
+        "test:unit": "./vendor/bin/phpunit --testdox --colors=always --group unit",
         "coverage": "./vendor/bin/phpunit --coverage-html coverage-report --testdox --colors=always",
         "analyse": "./vendor/bin/phpstan analyse src -l8",
         "sniff": "./vendor/bin/phpcs --standard=phpcs.xml src/ -v",
