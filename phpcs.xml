@@ -13,6 +13,7 @@
 		<exclude name="WordPress.Files.FileName.InvalidClassFileName"/>
 		<exclude name="WordPress.PHP.YodaConditions.NotYoda"/>
 		<exclude name="WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents"/>
+		<exclude name="WordPress.PHP.DisallowShortTernary.Found"/>
 	</rule>
 
 	<!-- Add in some extra rules from other standards. -->
