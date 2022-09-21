@@ -51,13 +51,15 @@ class Queue_Bootstrap {
 		add_filter(
 			Hooks::APP_INIT_SET_DI_RULES,
 			function( $rules ) use ( $queue_driver ) {
+				// Ensure the global rules exist.
+				if ( ! \array_key_exists( '*', $rules ) ) {
+					$rules['*'] = array();
+				}
+				if ( ! \array_key_exists( 'substitutions', $rules['*'] ) ) {
+					$rules['*']['substitutions'] = array();
+				}
 
-				$rules['*'] = array(
-					'substitutions' => array(
-						Queue::class => $queue_driver,
-
-					),
-				);
+				$rules['*']['substitutions'][ Queue::class ] = $queue_driver;
 
 				return $rules;
 			}
