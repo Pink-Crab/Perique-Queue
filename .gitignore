@@ -1,0 +1,9 @@
+# plugin.php
+tests/.env
+wordpress
+vendor
+composer.lock
+.phpunit.result.cache
+clover.xml
+perique-queue.code-workspace
+coverage-report
