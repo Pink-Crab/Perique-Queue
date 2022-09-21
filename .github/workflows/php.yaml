@@ -61,5 +61,5 @@ jobs:
         run: composer all
 
       - name: Codecov
-        run: bash <(curl -s https://codecov.io/bash) -t ${{ secrets.REGISTERABLES_CODECOV }}
+        run: bash <(curl -s https://codecov.io/bash) -t ${{ secrets.QUEUE_CODECOV }}
  
