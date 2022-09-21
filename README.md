@@ -9,17 +9,21 @@ A queue abstraction for the PinkCrab Perique Plugin Framework. Comes with a buil
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/Pink-Crab/Perique-Queue/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/Pink-Crab/Perique-Queue/?branch=master)
 
 
-> **Related Pages**  
-> » [Schema](docs/Schema.md)  
-> » [Column](docs/Column.md)  6
-> » [Index](docs/Index.md)  
-> » [Foreign_Key](docs/Foreign_Key.md)  
-
-
-[You can read the docs on the Perique.info](https://perique.info/lib/Table%20Builder/)
-
-
 ## Version
-**Release 1.1.0**
+**Release 0.1.0**
 
 ## Why?
+
+I needed a queue abstraction for the PinkCrab Perique Plugin Framework, and I wanted to be able to use it with the Action Scheduler, but also with a custom queue implementation. So I created this.
+
+## Installation
+
+### Composer
+
+```bash
+composer require pinkcrab/perique-queue
+```
+
+## Usage
+
+to follow
