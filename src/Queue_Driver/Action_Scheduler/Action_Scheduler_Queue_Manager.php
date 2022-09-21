@@ -69,7 +69,7 @@ class Action_Scheduler_Queue_Manager {
 		);
 
 		return is_int( $next )
-			? ( DateTimeImmutable::createFromFormat( 'U', \strval( $next ), wp_timezone() ) ?: null )
+			? ( DateTimeImmutable::createFromFormat( 'U', \strval( $next ), wp_timezone() ) ?: null ) //phpcs:ignore
 			: null;
 	}
 
