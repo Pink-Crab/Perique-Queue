@@ -25,13 +25,9 @@ declare(strict_types=1);
 
 namespace PinkCrab\Queue\Queue_Driver\Action_Scheduler;
 
-use stdClass;
 use DateTimeImmutable;
 use PinkCrab\Queue\Event\Event;
 use ActionScheduler_SimpleSchedule;
-use PinkCrab\Queue\Event\Async_Event;
-use PinkCrab\Queue\Event\Delayed_Event;
-use PinkCrab\Queue\Event\Recurring_Event;
 
 class Action_Scheduler_Queue_Manager {
 
