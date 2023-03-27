@@ -18,4 +18,8 @@ parameters:
         - '#Function as_schedule_single_action invoked with 5 parameters, 2-4 required#'
         - '#Function as_enqueue_async_action invoked with 4 parameters, 1-3 required#'
         - '#Function as_schedule_recurring_action invoked with 6 parameters, 3-5 required#'
+        - '#dispatch_async\(\) is unused#'
+        - '#dispatch_at\(\) is unused#'
+        - '#dispatch_recurring\(\) is unused#'
     reportUnmatchedIgnoredErrors: false
+    
