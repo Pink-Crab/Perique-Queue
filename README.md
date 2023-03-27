@@ -9,7 +9,7 @@ A queue abstraction for the PinkCrab Perique Plugin Framework. Comes with a buil
 [![WordPress 6.0 Test Suite [PHP7.2-8.1]](https://github.com/Pink-Crab/Perique-Queue/actions/workflows/WP_6_0.yaml/badge.svg)](https://github.com/Pink-Crab/Perique-Queue/actions/workflows/WP_6_0.yaml)
 [![WordPress 6.1 Test Suite [PHP7.2-8.1]](https://github.com/Pink-Crab/Perique-Queue/actions/workflows/WP_6_1.yaml/badge.svg)](https://github.com/Pink-Crab/Perique-Queue/actions/workflows/WP_6_1.yaml)
 [![codecov](https://codecov.io/gh/Pink-Crab/Perique-Queue/branch/master/graph/badge.svg?token=0sWrPDNZMt)](https://codecov.io/gh/Pink-Crab/Perique-Queue)
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/Pink-Crab/Perique-Queue/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/Pink-Crab/Perique-Queue/?branch=master))
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/Pink-Crab/Perique-Queue/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/Pink-Crab/Perique-Queue/?branch=master)
 [![Maintainability](https://api.codeclimate.com/v1/badges/6abaf4e934d80a1634b2/maintainability)](https://codeclimate.com/github/Pink-Crab/Perique-Queue/maintainability)
 
 
