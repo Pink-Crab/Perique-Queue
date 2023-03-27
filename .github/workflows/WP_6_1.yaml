@@ -20,7 +20,7 @@ jobs:
         image: ${{ matrix.mysql-versions }}
         env:
           MYSQL_ROOT_PASSWORD: 'crab'
-          MYSQL_DATABASE: pc_core_tests
+          MYSQL_DATABASE: pc_queue
         ports:
           - 3306:3306
         options: >-
