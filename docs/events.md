@@ -11,6 +11,8 @@ These event types are:
     - [Example](#example-1)
   - [Recurring Event](#recurring-event)
     - [Example](#example-2)
+  - [Sync Event](#sync-event)
+    - [Example](#example-3)
 
 Each of these events comes with its own Abstract Class which must be extended to create your own custom event.
 
@@ -50,25 +52,6 @@ class MyEvent extends AsyncEvent {
       $this->data = $data;
    }
 }
-```
-
-This can then be dispatched to the [Event Queue](dispatch.md) by either injecting the `Queue_Service` into your Controller or by using the `Queue::dispatch()` helper function.
-
-```php
-class Some_Controller{
-   private Queue_Service $queue;
-   public function __construct( Queue_Service $queue ) {
-      $this->queue = $queue;
-   }
-
-   public function some_method() {
-      $this->queue->dispatch( new MyEvent( array( 'foo' => 'bar' ) ) );
-   }
-}
-
-// Or
-
-PinkCrab\Queue\Dispatch\Queue::dispatch( new MyEvent( array( 'foo' => 'bar' ) ) );
 ```
 
 ## Delayed Event
@@ -122,7 +105,6 @@ class MyEvent extends DelayedEvent {
 
 This event will be triggered 1 day after it is dispatched to the [Event Queue](dispatch.md).
 
-> As with the [`AsyncEvent`](#async-event), this can then be dispatched to the [Event Queue](dispatch.md) by either injecting the `Queue_Service` into your Controller or by using the `Queue::dispatch()` helper function.
 
 ## Recurring Event
 
@@ -187,5 +169,28 @@ class MyEvent extends RecurringEvent {
 
 The event will be triggered 1 day after it is dispatched to the [Event Queue](dispatch.md), and then every 1 day after that.
 
-> As with the [`AsyncEvent`](#async-event), this can then be dispatched to the [Event Queue](dispatch.md) by either injecting the `Queue_Service` into your Controller or by using the `Queue::dispatch()` helper function.
 
+## Sync Event
+
+This can then be dispatched to the [Event Queue](dispatch.md) by either injecting the `Queue_Service` into your Controller or by using the `Queue::dispatch()` helper function.
+
+### Example
+
+**Using the Queue Service**
+```php
+class Some_Controller{
+   private Queue_Service $queue;
+   public function __construct( Queue_Service $queue ) {
+      $this->queue = $queue;
+   }
+
+   public function some_method() {
+      $this->queue->dispatch( new MyEvent( array( 'foo' => 'bar' ) ) );
+   }
+}
+```
+
+**Using the Queue Helper**
+```php
+PinkCrab\Queue\Dispatch\Queue::dispatch( new MyEvent( array( 'foo' => 'bar' ) ) );
+```
