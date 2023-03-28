@@ -10,6 +10,8 @@ These event types are:
 
 Each of these events comes with its own Abstract Class which must be extended to create your own custom event.
 
+All events must have a matching [`Event_Listener`](event-listener.md) which will be triggered when the event is processed by the queue.
+
 ## Async Event
 
 As the name implies, these events are triggered as soon as possible by the [Event Queue](dispatch.md). They are not delayed or recurring.
