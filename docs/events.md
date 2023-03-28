@@ -11,8 +11,9 @@ These event types are:
     - [Example](#example-1)
   - [Recurring Event](#recurring-event)
     - [Example](#example-2)
-  - [Sync Event](#sync-event)
+- [Dispatching Events](#dispatching-events)
     - [Example](#example-3)
+
 
 Each of these events comes with its own Abstract Class which must be extended to create your own custom event.
 
@@ -53,6 +54,8 @@ class MyEvent extends AsyncEvent {
    }
 }
 ```
+[How to dispatch an event](#dispatching-events)
+
 
 ## Delayed Event
 
@@ -105,6 +108,7 @@ class MyEvent extends DelayedEvent {
 
 This event will be triggered 1 day after it is dispatched to the [Event Queue](dispatch.md).
 
+[How to dispatch an event](#dispatching-events)
 
 ## Recurring Event
 
@@ -170,7 +174,7 @@ class MyEvent extends RecurringEvent {
 The event will be triggered 1 day after it is dispatched to the [Event Queue](dispatch.md), and then every 1 day after that.
 
 
-## Sync Event
+# Dispatching Events
 
 This can then be dispatched to the [Event Queue](dispatch.md) by either injecting the `Queue_Service` into your Controller or by using the `Queue::dispatch()` helper function.
 
