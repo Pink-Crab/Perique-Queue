@@ -1,5 +1,14 @@
 # Queue Driver
 
+- [Queue Driver](#queue-driver)
+  - [Action Scheduler](#action-scheduler)
+  - [Custom Driver](#custom-driver)
+    - [Driver Lifecycle](#driver-lifecycle)
+    - [Dispatching Events](#dispatching-events)
+    - [Cancelling Events](#cancelling-events)
+    - [Finding Events](#finding-events)
+    - [Checking if an Event is Scheduled](#checking-if-an-event-is-scheduled)
+
 It is possible to use any queue system as the Driver. Out of the box, Perique comes with a `Action_Scheduler` driver, which uses the WooCommerce Action Scheduler library. This is the recommended driver for most use cases.
 
 ## Action Scheduler
