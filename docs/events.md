@@ -212,7 +212,6 @@ It is possible to create adhoc events, which are not defined as a concreate clas
 ```php
 PinkCrab\Queue\Dispatch\Queue::dispatch(
    new class( 'my_event', 'acme_plugin', array( 'foo' => 'bar' ) ) extends AsyncEvent {
-      /** @param string $hook */
       public function __construct( string $hook, string $group, array $data = array() ) {
          $this->hook  = $hook;
          $this->group = $group;
