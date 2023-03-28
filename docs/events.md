@@ -13,6 +13,8 @@ These event types are:
     - [Example](#example-2)
 - [Dispatching Events](#dispatching-events)
     - [Example](#example-3)
+- [Creating Adhoc Events](#creating-adhoc-events)
+    - [Example](#example-4)
 
 
 Each of these events comes with its own Abstract Class which must be extended to create your own custom event.
@@ -197,4 +199,25 @@ class Some_Controller{
 **Using the Queue Helper**
 ```php
 PinkCrab\Queue\Dispatch\Queue::dispatch( new MyEvent( array( 'foo' => 'bar' ) ) );
+```
+
+# Creating Adhoc Events
+
+It is possible to create adhoc events, which are not defined as a concreate class, but instead using an anonymous class.
+
+> This is useful for events which are only used once, or are not worth creating a class for.
+
+### Example
+
+```php
+PinkCrab\Queue\Dispatch\Queue::dispatch(
+   new class( 'my_event', 'acme_plugin', array( 'foo' => 'bar' ) ) extends AsyncEvent {
+      /** @param string $hook */
+      public function __construct( string $hook, string $group, array $data = array() ) {
+         $this->hook  = $hook;
+         $this->group = $group;
+         $this->data  = $data;
+      }
+   }
+);
 ```
