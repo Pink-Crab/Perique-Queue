@@ -16,6 +16,15 @@ All events must have a matching [`Event_Listener`](event-listener.md) which will
 
 As the name implies, these events are triggered as soon as possible by the [Event Queue](dispatch.md). They are not delayed or recurring.
 
+**Required Properties**
+* `$hook` - The WP Hook/Action which will be triggered when the event is processed.
+* `$group` - The hooks group, this is used to identify the plugin or theme which the event belongs to.
+* `$data` - The data to be passed to the event.
+
+**Optional Properties**
+* `$is_unique` - This denotes if the event is unique, if set to true, the event will only be added to the queue if it does not already exist. This is useful for events which are triggered multiple times, but you only want to process once. Defaults to `false`.
+
+
 ### Example
 
 ```php
