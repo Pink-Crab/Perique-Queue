@@ -23,8 +23,8 @@ class MyListener extends Abstract_Listener {
 ```php
 // file config/registration.php
 return [
-    .....,
-    My_Listeners::class,
+   .....,
+   My_Listeners::class,
 ]
 ```
 
@@ -53,3 +53,25 @@ class MyListener extends Abstract_Listener {
 ```
 
 > As this makes use of WordPress Hooks, it is possible to have multiple listeners for the same event. This is useful if you want to split up your logic into multiple classes.
+
+## Create a custom listener
+
+To create your own listener, you can implement the following interface.
+
+```php
+interface Listener {
+   public function __invoke(): void;
+   public function get_hook(): string;
+   public function register( Hook_Loader $loader ): void;
+}
+```
+The `register()` method will automatically be called and passed the `Hook_Loader` instance, this is used to register the listener with WordPress.
+
+The `__invoke()` method will be called when the event is processed by the queue. In the `Abstract_Listener` class, the invoke method calls `get_args()` to get the data passed to the event, and then calls the `handle()` method, passing the data to it.
+
+```php
+public function __invoke(): void {
+   $args = func_get_args();
+   $this->handle( $args );
+}
+```
