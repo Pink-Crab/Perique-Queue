@@ -19,35 +19,22 @@ As the name implies, these events are triggered as soon as possible by the [Even
 ### Example
 
 ```php
-class MyEvent extends AsyncEvent
-{
-   /**
-    * The event name (Hook)
-    *
-    * @var string
-    */
-   protected $hook = 'my_event';
+class MyEvent extends AsyncEvent {
+   /**  The event hook */
+   protected string $hook = 'my_event';
 
    /**
     * The queue group it belongs to
-    *
-    * @var string
     */
-   protected $group = 'acme_plugin';
+   protected string $group = 'acme_plugin';
 
-   /**
-    * The data to be passed to the event
-    *
-    * @var mixed[]|null
-    */
-   protected $data = array();
+   /**  The data to be passed to the event  */
+   protected ?array $data = array();
 
-   /** 
-    * @param array $data
-    */
-    public function __construct( array $data = array() ) {
-        $this->data = $data;
-    }
+   /**  @param array $data */
+   public function __construct( array $data = array() ) {
+      $this->data = $data;
+   }
 }
 ```
 
@@ -55,14 +42,14 @@ This can then be dispatched to the [Event Queue](dispatch.md) by either injectin
 
 ```php
 class Some_Controller{
-    private Queue_Service $queue;
-    public function __construct( Queue_Service $queue ) {
-        $this->queue = $queue;
-    }
+   private Queue_Service $queue;
+   public function __construct( Queue_Service $queue ) {
+      $this->queue = $queue;
+   }
 
-    public function some_method() {
-        $this->queue->dispatch( new MyEvent( array( 'foo' => 'bar' ) ) );
-    }
+   public function some_method() {
+      $this->queue->dispatch( new MyEvent( array( 'foo' => 'bar' ) ) );
+   }
 }
 
 // Or
