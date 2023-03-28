@@ -14,7 +14,7 @@
 
 # Event Types
 
-There are 3 types of events which can be extended within your Application. These allow you to dispatch custom events to the [Event Queue](dispatch.md) to be handed by your Application.
+There are 3 types of events which can be extended within your Application. These allow you to dispatch custom events to the [Event Queue](event-queue.md) to be handed by your Application.
 
 Each of these events comes with its own Abstract Class which must be extended to create your own custom event.
 
@@ -22,7 +22,7 @@ All events must have a matching [`Event_Listener`](event-listener.md) which will
 
 ## Async Event
 
-As the name implies, these events are triggered as soon as possible by the [Event Queue](dispatch.md). They are not delayed or recurring.
+As the name implies, these events are triggered as soon as possible by the [Event Queue](event-queue.md). They are not delayed or recurring.
 
 **Required Properties**
 * `$hook` - The WP Hook/Action which will be triggered when the event is processed.
@@ -107,7 +107,7 @@ class MyEvent extends DelayedEvent {
 }
 ```
 
-This event will be triggered 1 day after it is dispatched to the [Event Queue](dispatch.md).
+This event will be triggered 1 day after it is dispatched to the [Event Queue](event-queue.md).
 
 [How to dispatch an event](#dispatching-events)
 
@@ -172,12 +172,12 @@ class MyEvent extends RecurringEvent {
 }
 ```
 
-The event will be triggered 1 day after it is dispatched to the [Event Queue](dispatch.md), and then every 1 day after that.
+The event will be triggered 1 day after it is dispatched to the [Event Queue](event-queue.md), and then every 1 day after that.
 
 
 # Dispatching Events
 
-This can then be dispatched to the [Event Queue](dispatch.md) by either injecting the `Queue_Service` into your Controller or by using the `Queue::dispatch()` helper function.
+This can then be dispatched to the [Event Queue](event-queue.md) by either injecting the `Queue_Service` into your Controller or by using the `Queue::dispatch()` helper function.
 
 ### Example
 

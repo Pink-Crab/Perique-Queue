@@ -25,17 +25,12 @@ declare(strict_types=1);
 
 namespace PinkCrab\Queue;
 
-use Dice\Dice;
-use Queue_Manager;
 use PinkCrab\Loader\Hook_Loader;
-use PinkCrab\Perique\Application\App;
 use PinkCrab\Queue\Listener\Listener;
 use PinkCrab\Queue\Queue_Driver\Queue;
 use PinkCrab\Perique\Application\Hooks;
-use PinkCrab\Queue\Dispatch\Queue_Service;
 use PinkCrab\Perique\Application\App_Config;
 use PinkCrab\Perique\Interfaces\DI_Container;
-use PinkCrab\Queue\Listener\Abstract_Listener;
 
 class Queue_Bootstrap {
 
