@@ -1,8 +1,3 @@
-# Event Types
-
-There are 3 types of events which can be extended within your Application. These allow you to dispatch custom events to the [Event Queue](dispatch.md) to be handed by your Application.
-
-These event types are:
 
 - [Event Types](#event-types)
   - [Async Event](#async-event)
@@ -16,6 +11,11 @@ These event types are:
 - [Creating Adhoc Events](#creating-adhoc-events)
     - [Example](#example-4)
 
+
+
+# Event Types
+
+There are 3 types of events which can be extended within your Application. These allow you to dispatch custom events to the [Event Queue](dispatch.md) to be handed by your Application.
 
 Each of these events comes with its own Abstract Class which must be extended to create your own custom event.
 
