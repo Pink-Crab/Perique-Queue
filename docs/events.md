@@ -20,16 +20,16 @@ As the name implies, these events are triggered as soon as possible by the [Even
 
 ```php
 class MyEvent extends AsyncEvent {
-   /**  The event hook */
+   /** The event hook */
    protected string $hook = 'my_event';
 
    /** The queue group it belongs to */
    protected string $group = 'acme_plugin';
 
-   /**  The data to be passed to the event  */
+   /** The data to be passed to the event */
    protected ?array $data = array();
 
-   /**  @param array $data */
+   /** @param array $data */
    public function __construct( array $data = array() ) {
       $this->data = $data;
    }
