@@ -23,9 +23,7 @@ class MyEvent extends AsyncEvent {
    /**  The event hook */
    protected string $hook = 'my_event';
 
-   /**
-    * The queue group it belongs to
-    */
+   /** The queue group it belongs to */
    protected string $group = 'acme_plugin';
 
    /**  The data to be passed to the event  */
