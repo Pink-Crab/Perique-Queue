@@ -67,7 +67,7 @@ interface Listener {
 ```
 The `register()` method will automatically be called and passed the `Hook_Loader` instance, this is used to register the listener with WordPress.
 
-The `__invoke()` method will be called when the event is processed by the queue. In the `Abstract_Listener` class, the invoke method calls `get_args()` to get the data passed to the event, and then calls the `handle()` method, passing the data to it.
+The `__invoke()` method will be called when the event is processed by the queue. In the `Abstract_Listener` class, the invoke method calls `func_get_args()` to get the data passed to the event, and then calls the `handle()` method, passing the data to it.
 
 ```php
 public function __invoke(): void {

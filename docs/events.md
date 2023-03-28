@@ -12,7 +12,6 @@
     - [Example](#example-4)
 
 
-
 # Event Types
 
 There are 3 types of events which can be extended within your Application. These allow you to dispatch custom events to the [Event Queue](dispatch.md) to be handed by your Application.
