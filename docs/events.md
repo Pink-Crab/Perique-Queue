@@ -1,0 +1,69 @@
+# Event Types
+
+There are 3 types of events which can be extended within your Application. These allow you to dispatch custom events to the [Event Queue](dispatch.md) to be handed by your Application.
+
+These event types are:
+
+* [Async](#async-event)
+* [Delayed](#delayed-event)
+* [Recurring](#recurring-event)
+
+Each of these events comes with its own Abstract Class which must be extended to create your own custom event.
+
+## Async Event
+
+As the name implies, these events are triggered as soon as possible by the [Event Queue](dispatch.md). They are not delayed or recurring.
+
+### Example
+
+```php
+class MyEvent extends AsyncEvent
+{
+   /**
+    * The event name (Hook)
+    *
+    * @var string
+    */
+   protected $hook = 'my_event';
+
+   /**
+    * The queue group it belongs to
+    *
+    * @var string
+    */
+   protected $group = 'acme_plugin';
+
+   /**
+    * The data to be passed to the event
+    *
+    * @var mixed[]|null
+    */
+   protected $data = array();
+
+   /** 
+    * @param array $data
+    */
+    public function __construct( array $data = array() ) {
+        $this->data = $data;
+    }
+}
+```
+
+This can then be dispatched to the [Event Queue](dispatch.md) by either injecting the `Queue_Service` into your Controller or by using the `Queue::dispatch()` helper function.
+
+```php
+class Some_Controller{
+    private Queue_Service $queue;
+    public function __construct( Queue_Service $queue ) {
+        $this->queue = $queue;
+    }
+
+    public function some_method() {
+        $this->queue->dispatch( new MyEvent( array( 'foo' => 'bar' ) ) );
+    }
+}
+
+// Or
+
+PinkCrab\Queue\Dispatch\Queue::dispatch( new MyEvent( array( 'foo' => 'bar' ) ) );
+```

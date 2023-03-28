@@ -29,35 +29,12 @@ use PinkCrab\Loader\Hook_Loader;
 use PinkCrab\Queue\Listener\Listener;
 use PinkCrab\Perique\Interfaces\DI_Container;
 use PinkCrab\Queue\Listener\Abstract_Listener;
+use PinkCrab\Perique\Interfaces\Inject_Hook_Loader;
 use PinkCrab\Perique\Interfaces\Registration_Middleware;
+use PinkCrab\Perique\Services\Container_Aware_Traits\Inject_Hook_Loader_Aware;
 
-class Queue_Middleware implements Registration_Middleware {
-
-	/** @var Hook_Loader */
-	protected $loader;
-
-	/** @var DI_Container */
-	protected $container;
-
-	/**
-	 * Sets the global hook loader
-	 *
-	 * @param \PinkCrab\Loader\Hook_Loader $loader
-	 * @return void
-	 */
-	public function set_hook_loader( Hook_Loader $loader ) {
-		$this->loader = $loader;
-	}
-
-	/**
-	 * Sets the global DI containers
-	 *
-	 * @param \PinkCrab\Perique\Interfaces\DI_Container $container
-	 * @return void
-	 */
-	public function set_di_container( DI_Container $container ): void {
-		$this->container = $container;
-	}
+class Queue_Middleware implements Registration_Middleware, Inject_Hook_Loader {
+	use Inject_Hook_Loader_Aware;
 
 	/**
 	 * Register all valid Listener.
@@ -67,7 +44,7 @@ class Queue_Middleware implements Registration_Middleware {
 	 */
 	public function process( $class ) {
 		if ( $class instanceof Listener ) {
-			$class->register( $this->loader );
+			// $class->register( $this->loader );
 		}
 
 		return $class;

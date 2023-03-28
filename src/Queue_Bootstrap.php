@@ -25,8 +25,17 @@ declare(strict_types=1);
 
 namespace PinkCrab\Queue;
 
+use Dice\Dice;
+use Queue_Manager;
+use PinkCrab\Loader\Hook_Loader;
+use PinkCrab\Perique\Application\App;
+use PinkCrab\Queue\Listener\Listener;
 use PinkCrab\Queue\Queue_Driver\Queue;
 use PinkCrab\Perique\Application\Hooks;
+use PinkCrab\Queue\Dispatch\Queue_Service;
+use PinkCrab\Perique\Application\App_Config;
+use PinkCrab\Perique\Interfaces\DI_Container;
+use PinkCrab\Queue\Listener\Abstract_Listener;
 
 class Queue_Bootstrap {
 
@@ -63,6 +72,22 @@ class Queue_Bootstrap {
 
 				return $rules;
 			}
+		);
+
+		add_action(
+			HOOKS::APP_INIT_PRE_BOOT,
+			function( App_Config $app_config, Hook_Loader $loader, DI_Container $container ) use ( $queue_driver ) {
+				$container->addRule(
+					Listener::class,
+					array(
+						'call' => array(
+							array( 'register', array( $loader ) ),
+						),
+					)
+				);
+			},
+			10,
+			3
 		);
 
 		add_action(
