@@ -38,8 +38,8 @@
         "php-stubs/woocommerce-stubs": "dev-master"
     },
     "require": {
-        "php": ">=7.2.0",
-        "pinkcrab/perique-framework-core": "^1"
+        "php": ">=7.4.0",
+        "pinkcrab/perique-framework-core": "2.0.*"
     },
     "scripts": {
         "test": "./vendor/bin/phpunit --coverage-clover clover.xml --testdox --colors=always",
@@ -56,5 +56,6 @@
             "dealerdirect/phpcodesniffer-composer-installer": true
         }
     },
-    "minimum-stability": "dev"
+    "minimum-stability": "dev",
+    "prefer-stable": true
 }
