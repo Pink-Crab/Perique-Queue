@@ -13,7 +13,7 @@ It is possible to use any queue system as the Driver. Out of the box, Perique co
 
 ## Action Scheduler
 
-When using the `Action_Scheduler` driver, setup is pretty easy. Just add the following before you Application is defined and booted.
+When using the `Action_Scheduler` driver, setup is straightforward - just add the following before your Application is defined and booted:
 
 ```php
 // file plugin.php
@@ -25,7 +25,7 @@ $action_scheduler = Action_Scheduler_Driver::get_instance();
 Queue_Bootstrap::init( $action_scheduler );
 ```
 
-Once the Bootstrap is defined, its just a case of adding the `Queue_Middleware` to the Application.
+Once the Bootstrap is defined, add the `Queue_Middleware` to the Application:
 
 ```php
 // file plugin.php
@@ -117,7 +117,7 @@ As part of the `Bootstrap` process, the following are called on the driver:
 
 * `$this->driver->setup();` Is called as soon as the Bootstrap is initiated.
 * `$this->driver->init();` Is called on -1 priority of the `init` hook, this ensures all Plugins are loaded.
-* `$this->driver->teardown();` Is called on the `HOOKS::APP_INIT_POST_REGISTRATION` hook, which is triggered after the Application has been registered and all classes form the Registration Class list has been processed.
+* `$this->driver->teardown();` Is called on the `HOOKS::APP_INIT_POST_REGISTRATION` hook, which is triggered after the Application has been registered and all classes from the Registration Class list have been processed.
 
 The remaining methods are for processing Events when they are passed to the driver.
 
