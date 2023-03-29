@@ -19,13 +19,11 @@ use PinkCrab\Queue\Queue_Driver\Queue;
 use PinkCrab\Queue\Module\Perique_Queue;
 use PinkCrab\Perique\Application\App_Config;
 use PinkCrab\Perique\Interfaces\DI_Container;
-use PinkCrab\Queue\Tests\Fixture\Event\Logging_Event;
 use PinkCrab\Queue\Tests\Fixture\Driver\Logging_Driver;
-use PinkCrab\Queue\Registration_Middleware\Queue_Middleware;
 
 /**
  * @group unit
- * @group registration_middleware
+ * @group module
  */
 class Test_Queue_Module extends \WP_UnitTestCase {
 
