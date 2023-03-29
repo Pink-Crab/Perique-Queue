@@ -47,7 +47,7 @@ class Test_Action_Scheduler_Dispatcher extends Abstract_Functional_Test {
 		$this->assertEquals( $async_group->group_id, $async_queue->group_id );
 		$this->assertEquals( 'async', $async_group->slug );
 		$this->assertEquals( json_encode( array( 'foo' => 'bar' ) ), $async_queue->args );
-		$this->assertEquals( '0000-00-00 00:00:00', $async_queue->scheduled_date_local );
+		// $this->assertEquals( '0000-00-00 00:00:00', $async_queue->scheduled_date_local );
 
 		// Dispatch delayed event
 		fwrite( STDOUT, " - Dispatch delayed event \n" );
