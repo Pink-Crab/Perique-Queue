@@ -43,9 +43,9 @@ final class Queue {
 			self::$instance = $service;
 		}
 
-		// If we have not set the instance, we have a problem.
+		// If we  still dont have an instance, throw an exception.
 		if ( self::$instance === null ) {
-			throw new \RuntimeException( 'Unable to load Queue_Service' );
+			return self::service();
 		}
 
 		return self::$instance;
@@ -60,4 +60,55 @@ final class Queue {
 	public static function dispatch( Event $event ): ?int {
 		return self::service()->dispatch( $event );
 	}
+
+	/**
+	 * Cancel the next instnace of an event.
+	 *
+	 * @param Event $event
+	 * @return void
+	 */
+	public static function cancel_next( Event $event ): void {
+		self::service()->cancel_next( $event );
+	}
+
+	/**
+	 * Cancel all instances of an event.
+	 *
+	 * @param Event $event
+	 * @return void
+	 */
+	public static function cancel_all( Event $event ): void {
+		self::service()->cancel_all( $event );
+	}
+
+	/**
+	 * Get the next instance of an event.
+	 *
+	 * @param Event $event
+	 * @return ?DateTimeImmutable
+	 */
+	public static function next( Event $event ): ?DateTimeImmutable {
+		return self::service()->next( $event );
+	}
+
+	/**
+	 * Get all instances of an event.
+	 *
+	 * @param Event $event
+	 * @return array<int, DateTimeImmutable>
+	 */
+	public static function all( Event $event ): array {
+		return self::service()->all( $event );
+	}
+
+	/**
+	 * Checks if an event exists.
+	 *
+	 * @param Event $event
+	 * @return bool
+	 */
+	public static function exists( Event $event ): bool {
+		return self::service()->exists( $event );
+	}
+
 }
