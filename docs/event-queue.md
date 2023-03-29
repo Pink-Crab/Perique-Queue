@@ -85,3 +85,4 @@ This will return `true` if the event is scheduled, or `false` if it is not.
 | `$service->find_next( new MyEvent() );` | `Queue::find_next( new MyEvent() );` |
 | `$service->find_all( new MyEvent() );` | `Queue::find_all( new MyEvent() );` |
 | `$service->is_scheduled( new MyEvent() );` | `Queue::is_scheduled( new MyEvent() );` |
+ 
