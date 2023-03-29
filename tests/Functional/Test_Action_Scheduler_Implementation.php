@@ -14,6 +14,7 @@ namespace PinkCrab\Queue\Tests\Functional;
 
 use DateTimeImmutable;
 use PinkCrab\Queue\Event\Event;
+use Gin0115\WPUnit_Helpers\Objects;
 use PinkCrab\Queue\Event\Async_Event;
 use PinkCrab\Queue\Event\Delayed_Event;
 use PinkCrab\Queue\Event\Recurring_Event;
@@ -24,7 +25,7 @@ use PinkCrab\Queue\Queue_Driver\Action_Scheduler\Action_Scheduler_Driver;
  * @group functional
  * @group action_scheduler
  */
-class Test_Action_Scheduler_Implementation extends \WP_UnitTestCase  {
+class Test_Action_Scheduler_Implementation extends Abstract_Functional_Test  {
 
 	/** @testdox It should be possible to use a WP filter to control the path to action scheduler bootstrap file. */
 	public function test_it_should_be_possible_to_use_a_wp_filter_to_control_the_path_to_action_scheduler_bootstrap_file() {
@@ -39,13 +40,18 @@ class Test_Action_Scheduler_Implementation extends \WP_UnitTestCase  {
         $this->expectException( \RuntimeException::class );
         $this->expectExceptionMessage( 'Action Scheduler is not installed.' );
 
-		Action_Scheduler_Driver::get_instance();
+		$driver = Action_Scheduler_Driver::get_instance();
+
+		// Force a reset internal flag.
+		Objects::set_property( $driver, 'included', false );
+		$driver->setup();
+
 	}
 
     /** @testdox Whenever another instance of a queue is created, the bootstrap file should not be included again. */
     public function test_whenever_another_instance_of_a_queue_is_created_the_bootstrap_file_should_not_be_included_again() {
         // Create an instance of the driver.
-        Action_Scheduler_Driver::get_instance();
+        Action_Scheduler_Driver::get_instance()->setup();
 
         // Set the file to include to be an error.
         \add_filter(
@@ -56,7 +62,7 @@ class Test_Action_Scheduler_Implementation extends \WP_UnitTestCase  {
 		);
         
         // calling again should not throw an exception as the flag is set.
-        Action_Scheduler_Driver::get_instance();
+        Action_Scheduler_Driver::get_instance()->setup();
         $this->expectNotToPerformAssertions();
     }
 

@@ -47,7 +47,28 @@ final class Perique_Queue implements Module {
 		$this->queue_driver = $queue_driver;
 
 		// Init the queue driver.
-		add_action( 'init', fn() => $this->queue_driver->init(), -1 );
+		add_action( 'init', array( $this, 'init_driver' ), -1 );
+	}
+
+	/**
+	 * Gets the queue driver.
+	 *
+	 * @return ?Queue
+	 */
+	public function get_queue_driver(): ?Queue {
+		return $this->queue_driver;
+	}
+
+	/**
+	 * Initialise the driver.
+	 *
+	 * @return void
+	 */
+	public function init_driver(): void {
+		// If the queue driver is not set, default to the Action Scheduler Driver.
+		$this->verify_queue_driver();
+
+		$this->queue_driver->init(); // @phpstan-ignore-line, we have verified the driver is set.
 	}
 
 	/**
@@ -62,12 +83,6 @@ final class Perique_Queue implements Module {
 		if ( ! $this->queue_driver instanceof Queue ) {
 			$this->queue_driver = Action_Scheduler_Driver::get_instance();
 		}
-
-		// If there is no queue driver, throw an exception.
-		if ( ! $this->queue_driver instanceof Queue ) {
-			throw new \Exception( 'No Queue Driver has been set to Module.' );
-		}
-
 	}
 
 	/**
@@ -83,7 +98,7 @@ final class Perique_Queue implements Module {
 		$this->verify_queue_driver();
 
 		// Init queue setup
-		$this->queue_driver->setup();
+		$this->queue_driver->setup(); // @phpstan-ignore-line, we have verified the driver is set.
 
 		// Set the DI Rule for the Queue Driver.
 		$container->addRule(
@@ -109,8 +124,11 @@ final class Perique_Queue implements Module {
 
 	/** @inheritDoc */
 	public function post_register( App_Config $config, Hook_Loader $loader, DI_Container $container ): void { // phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter.FoundInImplementedInterfaceBeforeLastUsed, Generic.CodeAnalysis.UnusedFunctionParameter.FoundInImplementedInterfaceAfterLastUsed
+		// If the queue driver is not set, default to the Action Scheduler Driver.
+		$this->verify_queue_driver();
+
 		// Run the queue tear down.
-		$this->queue_driver->teardown();
+		$this->queue_driver->teardown(); // @phpstan-ignore-line, we have verified the driver is set.
 	}
 
 	/** @inheritDoc */

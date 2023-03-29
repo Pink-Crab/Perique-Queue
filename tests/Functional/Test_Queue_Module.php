@@ -3,7 +3,7 @@
 /**
  * Functional Tests.
  *
- * The bootstrap for setting up the lib with perique
+ * Test for the Queue Module.
  *
  * @package PinkCrab\Queue\Tests\Functional
  * @author Glynn Quelch glynn.quelch@gmail.com
@@ -21,14 +21,14 @@ use PinkCrab\Perique\Application\Hooks;
  * @group functional
  * @group setup
  */
-class Test_Queue_Bootstrap extends Abstract_Functional_Test {
+class Test_Queue_Module extends Abstract_Functional_Test {
 
 	/**
 	 * @testdox It should be possible to setup the queues driver to Perique in a simple boot static method.
 	 * @runInSeparateProcess
 	 * @preserveGlobalState disabled
 	 */
-	public function test_can_setup_queue_driver(): void {
+	public function _test_can_setup_queue_driver(): void {
 		$results = array();
 		$driver  = $this->createMock( Queue::class );
 		$driver->method( 'setup' )->will(

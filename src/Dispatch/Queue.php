@@ -38,7 +38,9 @@ final class Queue {
 	 */
 	public static function service(): Queue_Service {
 		if ( self::$instance === null ) {
-			self::$instance = App::make( Queue_Service::class );
+			/** @var Queue_Service|null */
+			$service        = App::make( Queue_Service::class );
+			self::$instance = $service;
 		}
 
 		// If we have not set the instance, we have a problem.

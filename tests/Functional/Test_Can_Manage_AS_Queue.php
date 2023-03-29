@@ -95,6 +95,60 @@ class Test_Can_Manage_AS_Queue extends Abstract_Functional_Test {
 		$this->assertCount( 2, $result );
 	}
 
+	/** @testdox It should be possible to check if an event has been scheduled. */
+	public function test_can_check_if_event_scheduled(): void {
+		// Cancel Next
+		fwrite( STDOUT, " - Check scheduled \n" );
+
+		// Dispatch twice.
+		$event = $this->get_async_event( 'test_scheduled' );
+		$this->action_scheduler_dispatcher->dispatch( $event );
+		$this->action_scheduler_dispatcher->dispatch( $event );
+
+		// Check scheduled.
+		$this->assertTrue( $this->queue->is_scheduled( $event ) );
+
+		// Check not scheduled.
+		$this->assertFalse( $this->queue->is_scheduled( $this->get_async_event( 'test_not_scheduled' ) ) );
+	}
+
+	/** @testdox It should be possible to dispatch any event type and get the event ID back */
+	public function test_can_dispatch_any_event_type(): void {
+		// dump($this->perique());
+		// Cancel Next
+		fwrite( STDOUT, " - Dispatch Async \n" );
+
+		// Dispatch twice.
+		$event = $this->get_async_event( 'test_async' );
+		$this->action_scheduler_dispatcher->dispatch( $event );
+		$this->action_scheduler_dispatcher->dispatch( $event );
+
+		// Check scheduled.
+		$this->assertTrue( $this->queue->is_scheduled( $event ) );
+
+		// Cancel Next
+		fwrite( STDOUT, " - Dispatch Delayed \n" );
+
+		// Dispatch twice.
+		$event = $this->get_delayed_event( '2030-02-24 00:00:00' );
+		$this->action_scheduler_dispatcher->dispatch( $event );
+		$this->action_scheduler_dispatcher->dispatch( $event );
+
+		// Check scheduled.
+		$this->assertTrue( $this->queue->is_scheduled( $event ) );
+
+		// // Cancel Next
+		// fwrite( STDOUT, " - Dispatch Recurring \n" );
+
+		// // Dispatch twice.
+		// $event = $this->get_recurring_event( '2030-02-24 00:00:00' );
+		// $this->action_scheduler_dispatcher->dispatch( $event );
+		// $this->action_scheduler_dispatcher->dispatch( $event );
+
+		// // Check scheduled.
+		// $this->assertTrue( $this->queue->is_scheduled( $event ) );
+	}
+
 	/**
 	 * Returns an async event.
 	 *
@@ -146,5 +200,7 @@ class Test_Can_Manage_AS_Queue extends Abstract_Functional_Test {
 		return $GLOBALS['wpdb']
 			->get_results( "SELECT * FROM {$table_prefix}actionscheduler_actions WHERE hook='$hook' AND status='$status';" );
 	}
+
+
 
 }

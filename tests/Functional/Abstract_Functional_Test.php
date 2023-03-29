@@ -14,6 +14,7 @@ namespace PinkCrab\Queue\Tests\Functional;
 
 use Gin0115\WPUnit_Helpers\Objects;
 use PinkCrab\Perique\Application\App;
+use PinkCrab\Queue\Module\Perique_Queue;
 use PinkCrab\Perique\Application\App_Factory;
 use PinkCrab\Queue\Registration_Middleware\Queue_Middleware;
 use PinkCrab\Queue\Queue_Driver\Action_Scheduler\Action_Scheduler_Driver;
@@ -35,23 +36,21 @@ abstract class Abstract_Functional_Test extends \WP_UnitTestCase {
 	/** @var Action_Scheduler_Dispatcher */
 	protected $action_scheduler_dispatcher;
 
-    /** @var Action_Scheduler_Queue_Manager */
-    protected $action_scheduler_queue_manager;
+	/** @var Action_Scheduler_Queue_Manager */
+	protected $action_scheduler_queue_manager;
 
 	protected function setUp(): void {
-
+		parent::setUp();
 		$this->action_scheduler_dispatcher = new Action_Scheduler_Dispatcher();
 
-        $this->action_scheduler_queue_manager = new Action_Scheduler_Queue_Manager();
+		$this->action_scheduler_queue_manager = new Action_Scheduler_Queue_Manager();
 
 		$this->queue = new Action_Scheduler_Driver( $this->action_scheduler_dispatcher, $this->action_scheduler_queue_manager );
 		$this->queue->setup();
 
 		$this->perique = ( new App_Factory( __DIR__ ) )
-            ->with_wp_dice( true )
-			->di_rules( array() )
-			->registration_classes( array() )
-			->construct_registration_middleware( Queue_Middleware::class )
+			->default_setup()
+			->module( Perique_Queue::class )
 			->boot();
 
 		do_action( 'init' );
@@ -59,17 +58,19 @@ abstract class Abstract_Functional_Test extends \WP_UnitTestCase {
 	}
 
 	/**
-	 * Unsets the instance of Perique.
+	 * Unset the instance of Perique.
 	 *
 	 * @return void
 	 */
 	protected function tearDown(): void {
+		parent::tearDown();
+
 		// Mark as not included.
 		Objects::set_property( $this->queue, 'included', false );
-		
+
 		Objects::set_property( $this->perique, 'app_config', null );
 		Objects::set_property( $this->perique, 'container', null );
-		Objects::set_property( $this->perique, 'registration', null );
+		Objects::set_property( $this->perique, 'module_manager', null );
 		Objects::set_property( $this->perique, 'loader', null );
 		Objects::set_property( $this->perique, 'booted', false );
 		$this->perique = null;
