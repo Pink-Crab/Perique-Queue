@@ -2,14 +2,14 @@
 
 To interact with the Event Queue, you have 2 options:
 
-Use the `Queue` directly via the Queue Proxy.
+1. Use the `Queue` directly via the Queue Proxy.
 
 ```php
 \PinkCrab\Queue\Dispatch\Queue::dispatch( new MyEvent() );
 ```
-**_or_** 
+**_or_**
 
-By injecting the `Queue_Service` into any class (constructed via the Container).
+2. By injecting the `Queue_Service` into any class (constructed via the Container).
 
 ```php
 class Some_Controller{
