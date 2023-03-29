@@ -1,6 +1,6 @@
 # Event Listener
 
-As the Queue makes use of WordPress hooks(actions), it is necessary to define a listener for each event. The listener is responsible for triggering the event when it is processed by the queue.
+As the Queue makes use of WordPress hooks (actions), it is necessary to define a listener for each event. The listener is responsible for triggering the event when it is processed by the queue.
 
 Listeners are defined by extending the `Abstract_Listener` class, or by creating your own custom implementation of the `Listener` interface. All listeners that extend from `Abstract_Listener` can be added to the `Registration_List` to be processed by the regular Perique registration process.
 
@@ -56,7 +56,7 @@ class MyListener extends Abstract_Listener {
 
 ## Create a custom listener
 
-To create your own listener, you can implement the following interface.
+To create your own listener, you can implement the following interface:
 
 ```php
 interface Listener {
