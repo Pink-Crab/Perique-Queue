@@ -75,4 +75,13 @@ public function is_scheduled( Event $event ): bool
 
 This will return `true` if the event is scheduled, or `false` if it is not.
 
-> All of these methods are accessible via the `Queue` Proxy and the `Queue_Service`.
+> All of these methods are accessible via the `Queue` Proxy and the `Queue_Service`. But when called from the Proxy, they are static methods.
+
+| Queue_Service | Queue Proxy |
+| --- | --- |
+| `$service->dispatch( new MyEvent() );` | `Queue::dispatch( new MyEvent() );` |
+| `$service->cancel_next( new MyEvent() );` | `Queue::cancel_next( new MyEvent() );` |
+| `$service->cancel_all( new MyEvent() );` | `Queue::cancel_all( new MyEvent() );` |
+| `$service->find_next( new MyEvent() );` | `Queue::find_next( new MyEvent() );` |
+| `$service->find_all( new MyEvent() );` | `Queue::find_all( new MyEvent() );` |
+| `$service->is_scheduled( new MyEvent() );` | `Queue::is_scheduled( new MyEvent() );` |
