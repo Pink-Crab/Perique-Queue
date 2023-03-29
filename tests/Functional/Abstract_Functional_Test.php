@@ -46,6 +46,10 @@ abstract class Abstract_Functional_Test extends \WP_UnitTestCase {
 		$this->action_scheduler_queue_manager = new Action_Scheduler_Queue_Manager();
 
 		$this->queue = new Action_Scheduler_Driver( $this->action_scheduler_dispatcher, $this->action_scheduler_queue_manager );
+		
+		// Ensure its been included.
+		Objects::set_property( $this->queue, 'included', false );
+		
 		$this->queue->setup();
 
 		$this->perique = ( new App_Factory( __DIR__ ) )

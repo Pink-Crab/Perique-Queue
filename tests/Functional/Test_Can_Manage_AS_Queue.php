@@ -114,7 +114,6 @@ class Test_Can_Manage_AS_Queue extends Abstract_Functional_Test {
 
 	/** @testdox It should be possible to dispatch any event type and get the event ID back */
 	public function test_can_dispatch_any_event_type(): void {
-		// dump($this->perique());
 		// Cancel Next
 		fwrite( STDOUT, " - Dispatch Async \n" );
 
@@ -136,17 +135,6 @@ class Test_Can_Manage_AS_Queue extends Abstract_Functional_Test {
 
 		// Check scheduled.
 		$this->assertTrue( $this->queue->is_scheduled( $event ) );
-
-		// // Cancel Next
-		// fwrite( STDOUT, " - Dispatch Recurring \n" );
-
-		// // Dispatch twice.
-		// $event = $this->get_recurring_event( '2030-02-24 00:00:00' );
-		// $this->action_scheduler_dispatcher->dispatch( $event );
-		// $this->action_scheduler_dispatcher->dispatch( $event );
-
-		// // Check scheduled.
-		// $this->assertTrue( $this->queue->is_scheduled( $event ) );
 	}
 
 	/**
