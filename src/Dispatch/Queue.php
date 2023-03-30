@@ -20,7 +20,7 @@ declare(strict_types=1);
  * @author Glynn Quelch <glynn.quelch@gmail.com>
  * @license http://www.opensource.org/licenses/mit-license.html  MIT License
  * @package PinkCrab\Queue
- * @since 0.1.0
+ * @since 2.0.0
  */
 
 namespace PinkCrab\Queue\Dispatch;
