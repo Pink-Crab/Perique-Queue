@@ -41,13 +41,15 @@ final class Perique_Queue implements Module {
 	 * Set the Queue Driver to use.
 	 *
 	 * @param Queue $queue_driver
-	 * @return void
+	 * @return self
 	 */
-	public function set_queue_driver( Queue $queue_driver ): void {
+	public function set_queue_driver( Queue $queue_driver ): self {
 		$this->queue_driver = $queue_driver;
 
 		// Init the queue driver.
 		add_action( 'init', array( $this, 'init_driver' ), -1 );
+
+		return $this;
 	}
 
 	/**

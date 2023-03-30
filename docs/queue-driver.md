@@ -3,8 +3,7 @@
 - [Queue Driver](#queue-driver)
   - [Action Scheduler](#action-scheduler)
   - [Custom Driver](#custom-driver)
-    - [Driver Lifecycle](#driver-lifecycle)
-    - [Dispatching Events](#dispatching-events)
+    - [Using Custom Driver](#using-custom-driver)
     - [Cancelling Events](#cancelling-events)
     - [Finding Events](#finding-events)
     - [Checking if an Event is Scheduled](#checking-if-an-event-is-scheduled)
@@ -17,20 +16,8 @@ When using the `Action_Scheduler` driver, setup is straightforward - just add th
 
 ```php
 // file plugin.php
-
-// Register the Action Scheduler Driver.
-$action_scheduler = Action_Scheduler_Driver::get_instance();
-
-// Then init the Queue Bootstrap with the instance.
-Queue_Bootstrap::init( $action_scheduler );
-```
-
-Once the Bootstrap is defined, add the `Queue_Middleware` to the Application:
-
-```php
-// file plugin.php
 $factory = (new App_Factory(__DIR__))
-   ->construct_registration_middleware( Queue_Middleware::class )
+   ->module( \PinkCrab\Queue\Module\Perique_Queue::class )
    ->default_setup()
    ->boot();
 ```
@@ -111,6 +98,22 @@ interface Queue {
    public function is_scheduled( Event $event): bool;
 }
 ```
+### Using Custom Driver
+
+To use a custom driver, you can pass an instance of the driver to the config callback when adding the Queue module.
+
+```php
+// file plugin.php
+$factory = ( new App_Factory( __DIR__ ) )
+   ->module( 
+      Perique_Queue::class,
+      function( Perique_Queue $queue ): Perique_Queue {
+         $queue->set_queue_driver( new MyCustomDriver() );
+         return $queue;
+      }
+   ->default_setup()
+   ->boot();
+
 As part of the `Bootstrap` process, the following are called on the driver:
 
 ### Driver Lifecycle
@@ -120,6 +123,8 @@ As part of the `Bootstrap` process, the following are called on the driver:
 * `$this->driver->teardown();` Is called on the `HOOKS::APP_INIT_POST_REGISTRATION` hook, which is triggered after the Application has been registered and all classes from the Registration Class list have been processed.
 
 The remaining methods are for processing Events when they are passed to the driver.
+
+> **PLEASE NOTE** It is possible to directly use the driver for processing events, but this is not recommended. Please see the [Queue Service and Queue Proxy Classes](event-queue.md) for more information on how to use the Queue Service.
 
 ### Dispatching Events
 

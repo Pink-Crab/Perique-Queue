@@ -3,7 +3,7 @@
 /**
  * Unit Tests.
  *
- * Tests the registration middleware service.
+ * Tests the perique queue service.
  *
  * @package PinkCrab\Queue\Tests\Functional
  * @author Glynn Quelch glynn.quelch@gmail.com
