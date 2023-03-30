@@ -7,3 +7,5 @@ composer.lock
 clover.xml
 perique-queue.code-workspace
 coverage-report
+.vscode
+plugin.php
