@@ -13,12 +13,6 @@ A queue abstraction for the PinkCrab Perique Plugin Framework. Comes with a buil
 [![Maintainability](https://api.codeclimate.com/v1/badges/6abaf4e934d80a1634b2/maintainability)](https://codeclimate.com/github/Pink-Crab/Perique-Queue/maintainability)
 
 
-
-
-
-## Version
-**Release 0.1.0**
-
 ## Why?
 
 I needed a queue abstraction for the PinkCrab Perique Plugin Framework, and I wanted to be able to use it with the Action Scheduler, but also with a custom queue implementation. So I created this.
