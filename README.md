@@ -61,9 +61,6 @@ Please [see the Events Docs](./docs/events.md) for more details.
 
 ### Dispatching Events and Interacting with the Queue
 
-There are 2 ways to interact with the queue. You can either inject the `Queue_Service` into your class, or use the `Queue` Facade/Proxy class. 
-
-#### Queue Service
 
 The `Queue_Service` is the main class for interacting with the queue. It can be injected into any class which is created via the DI_Container.
 
@@ -95,27 +92,54 @@ class My_Class {
 ```
 > By injecting the `Queue_Service` as a dependency, this will allow mocking the service much easier in tests.
 
-#### Queue Proxy
+You can read more about the [`Queue_Service` here](./docs/queue-service.md).
 
-You can access the proxy class at any time by using the `PinkCrab\Queue\Dispatch\Queue` class. This class is a proxy to the `Queue_Service` and will return the same instance of the service. 
+### Event Listeners
+
+As the Queue just trigger WordPress Actions, you can just use the standard WordPress Action hooks to listen for the events.
 
 ```php
-use PinkCrab\Queue\Dispatch\Queue;
-
-// Dispatch an event
-Queue::dispatch( new My_Event() );
-
-// Get the next event
-$event = Queue::find_next( new My_Event() );
-
-// Cancel the next event
-Queue::cancel_next( new My_Event() );
-
-// Check if an event is pending in the queue
-$pending = Queue::is_scheduled( new My_Event() );
+add_action( 'my_event', function( $event ) {
+    // Do something with the event.
+}, 10, 1 );
 ```
-> Please note using the Proxy class is discouraged, and you should inject the `Queue_Service` into your class.
 
+But we have a custom listener which you can use if you want to create controller like classes. As with the general concept behind Perique, these are designed to be added to be added to the registration class list, and then constructed and processed via the Registration Process and the DI_Container.
 
-For more details on the `Queue_Service` please [see the Queue Service Docs](./docs/queue-service.md).
+To make use of this, you can easily extend from the `Abstract_Listener` class, and then add the class to the registration class list.
 
+```php
+<?php
+use PinkCrab\Queue\Listener\Abstract_Listener;
+
+class My_Listener extends Abstract_Listener {
+
+    protected string $hook = 'my_event';
+
+    public function handle( array $args ): void {
+        // Do something with the event.
+    }
+}
+```
+
+For more details on the `Abstract_Listener` class, please [see the docs here](./docs/event-listener.md).
+
+## Requires
+* [PinkCrab Perique Framework V2 and above.](https://github.com/Pink-Crab/Perqiue-Framework)
+* PHP7.4+
+
+## License
+
+### MIT License
+http://www.opensource.org/licenses/mit-license.html  
+
+## Previous Perique Support
+
+* For support of all versions before Perique V2, please use version 1.0.* of this module.
+
+## Change Log ##
+* 2.0.0 - Updated to support Perique V2, added docs and updated underlying verison of Action Scheduler.
+* 1.0.0 - Tagged release, updates to pipelines and Dependencies for WP6.1
+* 0.1.2 - Tweaks to DI Rule definitions
+* 0.1.1 - Tweaks to dependencies
+* 0.1.0 - Initial Release
