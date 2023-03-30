@@ -1,3 +1,5 @@
+![logo](/docs/Perique-Queue-Card.jpg "PinkCrab Perique Queue")
+
 # Perique Queue
 A queue abstraction for the PinkCrab Perique Plugin Framework. Comes with a built in Action Scheduler implementation, but can be extended to be run with anything.
 
