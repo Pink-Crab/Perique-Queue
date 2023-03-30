@@ -124,7 +124,7 @@ As part of the `Bootstrap` process, the following are called on the driver:
 
 The remaining methods are for processing Events when they are passed to the driver.
 
-> **PLEASE NOTE** It is possible to directly use the driver for processing events, but this is not recommended. Please see the [Queue Service and Queue Proxy Classes](event-queue.md) for more information on how to use the Queue Service.
+> **PLEASE NOTE** It is possible to directly use the driver for processing events, but this is not recommended. Please see the [Queue Service and Queue Proxy Classes](queue-service.md) for more information on how to use the Queue Service.
 
 ### Dispatching Events
 
