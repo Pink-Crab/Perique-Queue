@@ -6,8 +6,8 @@ A queue abstraction for the PinkCrab Perique Plugin Framework. Comes with a buil
 
 [![Latest Stable Version](http://poser.pugx.org/pinkcrab/queue/v)](https://packagist.org/packages/pinkcrab/queue) [![Total Downloads](http://poser.pugx.org/pinkcrab/queue/downloads)](https://packagist.org/packages/pinkcrab/queue) [![Latest Unstable Version](http://poser.pugx.org/pinkcrab/queue/v/unstable)](https://packagist.org/packages/pinkcrab/queue) [![License](http://poser.pugx.org/pinkcrab/queue/license)](https://packagist.org/packages/pinkcrab/queue) [![PHP Version Require](http://poser.pugx.org/pinkcrab/queue/require/php)](https://packagist.org/packages/pinkcrab/queue)
 ![GitHub contributors](https://img.shields.io/github/contributors/Pink-Crab/Perique-Queue?label=Contributors)
-
 ![GitHub issues](https://img.shields.io/github/issues-raw/Pink-Crab/Perique-Queue)
+
 [![WP5.9 [PHP7.4-8.1] Tests](https://github.com/Pink-Crab/Perique-Queue/actions/workflows/WP_5_9.yaml/badge.svg)](https://github.com/Pink-Crab/Perique-Queue/actions/workflows/WP_5_9.yaml)
 [![WP6.0 [PHP7.4-8.1] Tests](https://github.com/Pink-Crab/Perique-Queue/actions/workflows/WP_6_0.yaml/badge.svg)](https://github.com/Pink-Crab/Perique-Queue/actions/workflows/WP_6_0.yaml)
 [![WP6.1 [PHP7.4-8.2] Tests](https://github.com/Pink-Crab/Perique-Queue/actions/workflows/WP_6_1.yaml/badge.svg)](https://github.com/Pink-Crab/Perique-Queue/actions/workflows/WP_6_1.yaml)
