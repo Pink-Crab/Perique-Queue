@@ -10,21 +10,8 @@
  */
 namespace PinkCrab\Queue\Tests\Fixture\Event;
 
-use PinkCrab\Queue\Listener\Abstract_Listener;
+use PinkCrab\Queue\Event\Async_Event;
 
-class Logging_Event extends Abstract_Listener{
-
+class Logging_Event extends Async_Event{
     protected $hook = 'pinkcrab_queue_test_event';
-
-    public static $log = [];
-
-    /**
-	 * Handles the call back.
-	 *
-	 * @param mixed[] $args
-	 * @return void
-	 */
-	protected function handle( array $args): void{
-        self::$log[] = $args;
-    }
 }
