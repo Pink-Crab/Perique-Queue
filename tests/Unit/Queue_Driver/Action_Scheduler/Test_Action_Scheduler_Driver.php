@@ -24,6 +24,7 @@ class Test_Action_Scheduler_Driver extends \WP_UnitTestCase {
 	/** @testdox It should be possible to get a default instance of the driver from a single call */
 	public function test_it_should_be_possible_to_get_a_default_instance_of_the_driver_from_a_single_call() {
 		$driver = Action_Scheduler_Driver::get_instance();
+		$driver->setup();
 		$this->assertInstanceOf( Action_Scheduler_Driver::class, $driver );
 
 		// The intnernal flag should be set.

@@ -61,7 +61,6 @@ class Action_Scheduler_Driver implements Queue {
 			new Action_Scheduler_Dispatcher(),
 			new Action_Scheduler_Queue_Manager()
 		);
-		$instance->setup();
 		return $instance;
 	}
 

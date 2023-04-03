@@ -130,7 +130,7 @@ class Action_Scheduler_Dispatcher {
 		}
 
 		/** @var DateTimeImmutable */
-		$delayed_until = $event->delayed_until() instanceof DateTimeImmutable
+		$delayed_until = $event->delayed_until() instanceof \DateTimeImmutable
 			? $event->delayed_until()->setTimezone( wp_timezone() )
 			: DateTimeImmutable::createFromFormat( 'U', '0', wp_timezone() );
 
