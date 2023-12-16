@@ -4,6 +4,8 @@
   - [Action Scheduler](#action-scheduler)
   - [Custom Driver](#custom-driver)
     - [Using Custom Driver](#using-custom-driver)
+    - [Driver Lifecycle](#driver-lifecycle)
+    - [Dispatching Events](#dispatching-events)
     - [Cancelling Events](#cancelling-events)
     - [Finding Events](#finding-events)
     - [Checking if an Event is Scheduled](#checking-if-an-event-is-scheduled)
@@ -113,6 +115,7 @@ $factory = ( new App_Factory( __DIR__ ) )
       }
    ->default_setup()
    ->boot();
+```
 
 As part of the `Bootstrap` process, the following are called on the driver:
 
