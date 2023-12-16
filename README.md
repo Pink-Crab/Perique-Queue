@@ -141,6 +141,7 @@ http://www.opensource.org/licenses/mit-license.html
 * For support of all versions before Perique V2, please use version 1.0.* of this module.
 
 ## Change Log ##
+* 2.0.2 - Updated Action Scheduler to 3.7.1
 * 2.0.1 - Dependency updates
 * 2.0.0 - Updated to support Perique V2, added docs and updated underlying verison of Action Scheduler.
 * 1.0.0 - Tagged release, updates to pipelines and Dependencies for WP6.1
