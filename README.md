@@ -12,6 +12,8 @@ A queue abstraction for the PinkCrab Perique Plugin Framework. Comes with a buil
 [![WP6.0 [PHP7.4-8.1] Tests](https://github.com/Pink-Crab/Perique-Queue/actions/workflows/WP_6_0.yaml/badge.svg)](https://github.com/Pink-Crab/Perique-Queue/actions/workflows/WP_6_0.yaml)
 [![WP6.1 [PHP7.4-8.2] Tests](https://github.com/Pink-Crab/Perique-Queue/actions/workflows/WP_6_1.yaml/badge.svg)](https://github.com/Pink-Crab/Perique-Queue/actions/workflows/WP_6_1.yaml)
 [![WP6.2 [PHP7.4-8.2] Tests](https://github.com/Pink-Crab/Perique-Queue/actions/workflows/WP_6_2.yaml/badge.svg)](https://github.com/Pink-Crab/Perique-Queue/actions/workflows/WP_6_2.yaml)
+[![WP6.3 [PHP7.4-8.2] Tests](https://github.com/Pink-Crab/Perique-Queue/actions/workflows/WP_6_3.yaml/badge.svg)](https://github.com/Pink-Crab/Perique-Queue/actions/workflows/WP_6_3.yaml)
+[![WP6.4 [PHP7.4-8.2] Tests](https://github.com/Pink-Crab/Perique-Queue/actions/workflows/WP_6_4.yaml/badge.svg)](https://github.com/Pink-Crab/Perique-Queue/actions/workflows/WP_6_4.yaml)
 
 [![codecov](https://codecov.io/gh/Pink-Crab/Perique-Queue/branch/master/graph/badge.svg?token=0sWrPDNZMt)](https://codecov.io/gh/Pink-Crab/Perique-Queue)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/Pink-Crab/Perique-Queue/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/Pink-Crab/Perique-Queue/?branch=master)
@@ -139,6 +141,7 @@ http://www.opensource.org/licenses/mit-license.html
 * For support of all versions before Perique V2, please use version 1.0.* of this module.
 
 ## Change Log ##
+* 2.0.1 - Dependency updates
 * 2.0.0 - Updated to support Perique V2, added docs and updated underlying verison of Action Scheduler.
 * 1.0.0 - Tagged release, updates to pipelines and Dependencies for WP6.1
 * 0.1.2 - Tweaks to DI Rule definitions
