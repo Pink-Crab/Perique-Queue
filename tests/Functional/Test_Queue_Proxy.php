@@ -113,14 +113,14 @@ class Test_Queue_Proxy extends Abstract_Functional_Test {
        $event1 = new class() extends Delayed_Event {
             protected $hook = 'test_can_get_next_event_time_using_proxy';
             public function delayed_until(): ?DateTimeImmutable {
-				return new DateTimeImmutable( '2025-02-24 00:00:00' );
+				return new DateTimeImmutable( '2085-02-24 00:00:00' );
 			}
         };
 
         $event2 = new class() extends Delayed_Event {
             protected $hook = 'test_can_get_next_event_time_using_proxy';
             public function delayed_until(): ?DateTimeImmutable {
-				return new DateTimeImmutable( '2024-02-24 00:00:00' );
+				return new DateTimeImmutable( '2084-02-24 00:00:00' );
 			}
         };
 
@@ -133,10 +133,10 @@ class Test_Queue_Proxy extends Abstract_Functional_Test {
         $this->assertCount( 2, $all );
 
         $this->assertInstanceOf( DateTimeImmutable::class, $all[0] );
-        $this->assertEquals( '2025-02-24 00:00:00', $all[1]->format( 'Y-m-d H:i:s' ) );
+        $this->assertEquals( '2085-02-24 00:00:00', $all[1]->format( 'Y-m-d H:i:s' ) );
 
         $this->assertInstanceOf( DateTimeImmutable::class, $all[1] );
-        $this->assertEquals( '2024-02-24 00:00:00', $all[0]->format( 'Y-m-d H:i:s' ) );
+        $this->assertEquals( '2084-02-24 00:00:00', $all[0]->format( 'Y-m-d H:i:s' ) );
     }
 
     /** @testdox It should be possible to check if an event exists using the Queue Proxy */

@@ -57,21 +57,21 @@ interface Queue {
 	 * @param Event $event
 	 * @return int|null
 	 */
-	public function dispatch( Event $event) : ?int;
+	public function dispatch( Event $event ): ?int;
 
 	/**
 	 * Cancel next occurrence of Event
 	 *
 	 * @param Event $event
 	 */
-	public function cancel_next( Event $event): void;
+	public function cancel_next( Event $event ): void;
 
 	/**
 	 * Cancel all occurrences of Event
 	 *
 	 * @param Event $event
 	 */
-	public function cancel_all( Event $event): void;
+	public function cancel_all( Event $event ): void;
 
 	/**
 	 * Get next occurrence of Event
@@ -79,7 +79,7 @@ interface Queue {
 	 * @param Event $event
 	 * @return DateTimeImmutable|null
 	 */
-	public function find_next( Event $event): ?DateTimeImmutable;
+	public function find_next( Event $event ): ?DateTimeImmutable;
 
 	/**
 	 * Get all occurrences of Event
@@ -87,7 +87,7 @@ interface Queue {
 	 * @param Event $event
 	 * @return DateTimeImmutable[]
 	 */
-	public function find_all( Event $event): array;
+	public function find_all( Event $event ): array;
 
 
 	/**
@@ -96,6 +96,5 @@ interface Queue {
 	 * @param Event $event
 	 * @return bool
 	 */
-	public function is_scheduled( Event $event): bool;
-
+	public function is_scheduled( Event $event ): bool;
 }
