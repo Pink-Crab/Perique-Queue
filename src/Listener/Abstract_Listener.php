@@ -71,6 +71,5 @@ abstract class Abstract_Listener implements Listener {
 	 * @param mixed[] $args
 	 * @return void
 	 */
-	abstract protected function handle( array $args): void;
-
+	abstract protected function handle( array $args ): void;
 }

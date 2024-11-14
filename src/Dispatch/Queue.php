@@ -110,5 +110,4 @@ final class Queue {
 	public static function exists( Event $event ): bool {
 		return self::service()->exists( $event );
 	}
-
 }

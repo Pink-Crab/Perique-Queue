@@ -123,5 +123,4 @@ class Action_Scheduler_Queue_Manager {
 			$event->get_group()
 		);
 	}
-
 }
