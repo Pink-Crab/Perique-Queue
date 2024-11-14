@@ -80,7 +80,7 @@ class Action_Scheduler_Driver implements Queue {
 		$path = join(
 			\DIRECTORY_SEPARATOR,
 			array(
-				dirname( __FILE__, 4 ),
+				dirname( __DIR__, 3 ),
 				'lib',
 				'action-scheduler',
 				'action-scheduler.php',

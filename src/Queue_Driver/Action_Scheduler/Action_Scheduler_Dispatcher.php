@@ -37,7 +37,7 @@ class Action_Scheduler_Dispatcher {
 	 * Dispatch Event
 	 *
 	 * @param Event $event
-	 * @return int|null Returns the event id.
+	 * @return integer|null Returns the event id.
 	 */
 	public function dispatch( Event $event ): ?int {
 		// @phpstan-ignore-next-line
@@ -84,7 +84,7 @@ class Action_Scheduler_Dispatcher {
 	 * Dispatches the event to the queue immediately.
 	 *
 	 * @param Event $event
-	 * @return int Returns the event id.
+	 * @return integer Returns the event id.
 	 */
 	private function dispatch_async( Event $event ): int {
 		return \as_enqueue_async_action(
@@ -99,14 +99,16 @@ class Action_Scheduler_Dispatcher {
 	 * Dispatches the event to the queue at a specific time.
 	 *
 	 * @param Event $event
-	 * @return int Returns the event id.
+	 * @return integer Returns the event id.
 	 */
 	private function dispatch_at( Event $event ): int {
 		if ( ! $event->delayed_until() instanceof DateTimeImmutable ) {
 			throw new \InvalidArgumentException( 'Event must have a delayed_until date/time.' );
 		}
 
-		/** @var DateTimeImmutable */
+		/**
+ * @var DateTimeImmutable
+*/
 		$delayed_until = $event->delayed_until();
 
 		return as_schedule_single_action(
@@ -122,14 +124,16 @@ class Action_Scheduler_Dispatcher {
 	 * Dispatches a recurring event to the queue.
 	 *
 	 * @param Event $event
-	 * @return int Returns the event id.
+	 * @return integer Returns the event id.
 	 */
 	private function dispatch_recurring( Event $event ): int {
 		if ( $event->interval() === null ) {
 			throw new \InvalidArgumentException( 'Event must have an for it to be recurring.' );
 		}
 
-		/** @var DateTimeImmutable */
+		/**
+ * @var DateTimeImmutable
+*/
 		$delayed_until = $event->delayed_until() instanceof \DateTimeImmutable
 			? $event->delayed_until()->setTimezone( wp_timezone() )
 			: DateTimeImmutable::createFromFormat( 'U', '0', wp_timezone() );
@@ -143,6 +147,4 @@ class Action_Scheduler_Dispatcher {
 			$event->is_unique()
 		);
 	}
-
-
 }

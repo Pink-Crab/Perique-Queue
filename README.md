@@ -4,16 +4,15 @@
 A queue abstraction for the PinkCrab Perique Plugin Framework. Comes with a built in Action Scheduler implementation, but can be extended to be run with anything.
 
 
-[![Latest Stable Version](http://poser.pugx.org/pinkcrab/queue/v)](https://packagist.org/packages/pinkcrab/queue) [![Total Downloads](http://poser.pugx.org/pinkcrab/queue/downloads)](https://packagist.org/packages/pinkcrab/queue) [![Latest Unstable Version](http://poser.pugx.org/pinkcrab/queue/v/unstable)](https://packagist.org/packages/pinkcrab/queue) [![License](http://poser.pugx.org/pinkcrab/queue/license)](https://packagist.org/packages/pinkcrab/queue) [![PHP Version Require](http://poser.pugx.org/pinkcrab/queue/require/php)](https://packagist.org/packages/pinkcrab/queue)
+[![Latest Stable Version](https://poser.pugx.org/pinkcrab/queue/v)](https://packagist.org/packages/pinkcrab/queue) [![Total Downloads](https://poser.pugx.org/pinkcrab/queue/downloads)](https://packagist.org/packages/pinkcrab/queue) [![Latest Unstable Version](https://poser.pugx.org/pinkcrab/queue/v/unstable)](https://packagist.org/packages/pinkcrab/queue) [![License](https://poser.pugx.org/pinkcrab/queue/license)](https://packagist.org/packages/pinkcrab/queue) [![PHP Version Require](https://poser.pugx.org/pinkcrab/queue/require/php)](https://packagist.org/packages/pinkcrab/queue)
 ![GitHub contributors](https://img.shields.io/github/contributors/Pink-Crab/Perique-Queue?label=Contributors)
 ![GitHub issues](https://img.shields.io/github/issues-raw/Pink-Crab/Perique-Queue)
 
-[![WP5.9 [PHP7.4-8.1] Tests](https://github.com/Pink-Crab/Perique-Queue/actions/workflows/WP_5_9.yaml/badge.svg)](https://github.com/Pink-Crab/Perique-Queue/actions/workflows/WP_5_9.yaml)
-[![WP6.0 [PHP7.4-8.1] Tests](https://github.com/Pink-Crab/Perique-Queue/actions/workflows/WP_6_0.yaml/badge.svg)](https://github.com/Pink-Crab/Perique-Queue/actions/workflows/WP_6_0.yaml)
-[![WP6.1 [PHP7.4-8.2] Tests](https://github.com/Pink-Crab/Perique-Queue/actions/workflows/WP_6_1.yaml/badge.svg)](https://github.com/Pink-Crab/Perique-Queue/actions/workflows/WP_6_1.yaml)
-[![WP6.2 [PHP7.4-8.2] Tests](https://github.com/Pink-Crab/Perique-Queue/actions/workflows/WP_6_2.yaml/badge.svg)](https://github.com/Pink-Crab/Perique-Queue/actions/workflows/WP_6_2.yaml)
 [![WP6.3 [PHP7.4-8.2] Tests](https://github.com/Pink-Crab/Perique-Queue/actions/workflows/WP_6_3.yaml/badge.svg)](https://github.com/Pink-Crab/Perique-Queue/actions/workflows/WP_6_3.yaml)
 [![WP6.4 [PHP7.4-8.2] Tests](https://github.com/Pink-Crab/Perique-Queue/actions/workflows/WP_6_4.yaml/badge.svg)](https://github.com/Pink-Crab/Perique-Queue/actions/workflows/WP_6_4.yaml)
+[![WP6.5 [PHP7.4-8.2] Tests](https://github.com/Pink-Crab/Perique-Queue/actions/workflows/WP_6_5.yaml/badge.svg)](https://github.com/Pink-Crab/Perique-Queue/actions/workflows/WP_6_5.yaml)
+[![WP6.6 [PHP7.4-8.2] Tests](https://github.com/Pink-Crab/Perique-Queue/actions/workflows/WP_6_6.yaml/badge.svg)](https://github.com/Pink-Crab/Perique-Queue/actions/workflows/WP_6_6.yaml)
+
 
 [![codecov](https://codecov.io/gh/Pink-Crab/Perique-Queue/branch/master/graph/badge.svg?token=0sWrPDNZMt)](https://codecov.io/gh/Pink-Crab/Perique-Queue)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/Pink-Crab/Perique-Queue/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/Pink-Crab/Perique-Queue/?branch=master)
@@ -28,7 +27,7 @@ I needed a queue abstraction for the PinkCrab Perique Plugin Framework, and I wa
 ### Composer
 
 ```bash
-composer require pinkcrab/perique-queue
+composer require pinkcrab/queue
 ```
 
 ## Usage
@@ -141,9 +140,10 @@ http://www.opensource.org/licenses/mit-license.html
 * For support of all versions before Perique V2, please use version 1.0.* of this module.
 
 ## Change Log ##
+* 2.0.3 - Updated Action Scheduler to 3.8.2
 * 2.0.2 - Updated Action Scheduler to 3.7.1
 * 2.0.1 - Dependency updates
-* 2.0.0 - Updated to support Perique V2, added docs and updated underlying verison of Action Scheduler.
+* 2.0.0 - Updated to support Perique V2, added docs and updated underlying version of Action Scheduler.
 * 1.0.0 - Tagged release, updates to pipelines and Dependencies for WP6.1
 * 0.1.2 - Tweaks to DI Rule definitions
 * 0.1.1 - Tweaks to dependencies
