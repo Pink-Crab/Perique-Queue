@@ -140,6 +140,7 @@ http://www.opensource.org/licenses/mit-license.html
 * For support of all versions before Perique V2, please use version 1.0.* of this module.
 
 ## Change Log ##
+* 2.1.0 - Support for Perique V2.1.* and updated Action Scheduler to 3.9.1
 * 2.0.3 - Updated Action Scheduler to 3.8.2
 * 2.0.2 - Updated Action Scheduler to 3.7.1
 * 2.0.1 - Dependency updates
