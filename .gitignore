@@ -1,5 +1,4 @@
 # plugin.php
-tests/.env
 wordpress
 vendor
 composer.lock

@@ -1,5 +1,4 @@
 includes:
-    - vendor/phpstan/phpstan/conf/bleedingEdge.neon
     - vendor/szepeviktor/phpstan-wordpress/extension.neon
 parameters:
     level: max
@@ -10,7 +9,6 @@ parameters:
         - %currentWorkingDirectory%/tests/*
         - %currentWorkingDirectory%/wordpress/*
     bootstrapFiles:
-        - vendor/php-stubs/wordpress-stubs/wordpress-stubs.php
         - vendor/php-stubs/woocommerce-stubs/woocommerce-stubs.php
         - vendor/php-stubs/woocommerce-stubs/woocommerce-packages-stubs.php
     ignoreErrors:
@@ -22,4 +20,3 @@ parameters:
         - '#dispatch_at\(\) is unused#'
         - '#dispatch_recurring\(\) is unused#'
     reportUnmatchedIgnoredErrors: false
-    
