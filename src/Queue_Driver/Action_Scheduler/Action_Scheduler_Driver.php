@@ -76,18 +76,22 @@ class Action_Scheduler_Driver implements Queue {
 			return;
 		}
 
-		// Path to Action Scheduler plugin directory.
+		// Default path to the composer-installed Action Scheduler plugin entry
+		// point (vendor/woocommerce/action-scheduler/action-scheduler.php,
+		// resolved from src/Queue_Driver/Action_Scheduler/ -> project root).
 		$path = join(
 			\DIRECTORY_SEPARATOR,
 			array(
 				dirname( __DIR__, 3 ),
-				'lib',
+				'vendor',
+				'woocommerce',
 				'action-scheduler',
 				'action-scheduler.php',
 			)
 		);
 
-		// Filter the path to the action-scheduler path.
+		// Consumers can override the path — e.g. to point at a WooCommerce or
+		// third-party plugin's bundled copy of Action Scheduler.
 		$path = apply_filters( 'pinkcrab_queue_action_scheduler_path', $path );
 
 		// Check if the file exists.

@@ -12,6 +12,11 @@
 		<exclude name="WordPress.Files.FileName.NotHyphenatedLowercase"/>
 		<exclude name="WordPress.Files.FileName.InvalidClassFileName"/>
 		<exclude name="WordPress.PHP.YodaConditions.NotYoda"/>
+		<exclude name="WordPress.WP.AlternativeFunctions.curl_curl_getinfo"/>
+		<exclude name="WordPress.WP.AlternativeFunctions.curl_curl_setopt"/>
+		<exclude name="WordPress.WP.AlternativeFunctions.curl_curl_exec"/>
+		<exclude name="WordPress.WP.AlternativeFunctions.curl_curl_init"/>
+		<exclude name="WordPress.WP.AlternativeFunctions.curl_curl_close"/>
 		<exclude name="WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents"/>
 		<exclude name="WordPress.PHP.DisallowShortTernary.Found"/>
 		<exclude name="PSR12.Files.FileHeader.IncorrectOrder" />

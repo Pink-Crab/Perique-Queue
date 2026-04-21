@@ -23,8 +23,8 @@ define( 'FIXTURE_PATH', dirname( __DIR__ ) . '/tests/fixtures/' );
 tests_add_filter(
 	'muplugins_loaded',
 	function() {
-		// Include action scheduler to ensure tables are created
-		require_once dirname( __DIR__ ) . '/lib/action-scheduler/action-scheduler.php';
+		// Include action scheduler to ensure tables are created.
+		require_once dirname( __DIR__ ) . '/vendor/woocommerce/action-scheduler/action-scheduler.php';
 	}
 );
 // Start up the WP testing environment.

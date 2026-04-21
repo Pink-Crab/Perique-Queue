@@ -8,15 +8,13 @@ A queue abstraction for the PinkCrab Perique Plugin Framework. Comes with a buil
 ![GitHub contributors](https://img.shields.io/github/contributors/Pink-Crab/Perique-Queue?label=Contributors)
 ![GitHub issues](https://img.shields.io/github/issues-raw/Pink-Crab/Perique-Queue)
 
-[![WP6.3 [PHP7.4-8.2] Tests](https://github.com/Pink-Crab/Perique-Queue/actions/workflows/WP_6_3.yaml/badge.svg)](https://github.com/Pink-Crab/Perique-Queue/actions/workflows/WP_6_3.yaml)
-[![WP6.4 [PHP7.4-8.2] Tests](https://github.com/Pink-Crab/Perique-Queue/actions/workflows/WP_6_4.yaml/badge.svg)](https://github.com/Pink-Crab/Perique-Queue/actions/workflows/WP_6_4.yaml)
-[![WP6.5 [PHP7.4-8.2] Tests](https://github.com/Pink-Crab/Perique-Queue/actions/workflows/WP_6_5.yaml/badge.svg)](https://github.com/Pink-Crab/Perique-Queue/actions/workflows/WP_6_5.yaml)
-[![WP6.6 [PHP7.4-8.2] Tests](https://github.com/Pink-Crab/Perique-Queue/actions/workflows/WP_6_6.yaml/badge.svg)](https://github.com/Pink-Crab/Perique-Queue/actions/workflows/WP_6_6.yaml)
-
+[![WP 6.6 [PHP8.0-8.4] Tests](https://github.com/Pink-Crab/Perique-Queue/actions/workflows/WP_6_6.yaml/badge.svg)](https://github.com/Pink-Crab/Perique-Queue/actions/workflows/WP_6_6.yaml)
+[![WP 6.7 [PHP8.0-8.4] Tests](https://github.com/Pink-Crab/Perique-Queue/actions/workflows/WP_6_7.yaml/badge.svg)](https://github.com/Pink-Crab/Perique-Queue/actions/workflows/WP_6_7.yaml)
+[![WP 6.8 [PHP8.0-8.4] Tests](https://github.com/Pink-Crab/Perique-Queue/actions/workflows/WP_6_8.yaml/badge.svg)](https://github.com/Pink-Crab/Perique-Queue/actions/workflows/WP_6_8.yaml)
+[![WP 6.9 [PHP8.0-8.4] Tests](https://github.com/Pink-Crab/Perique-Queue/actions/workflows/WP_6_9.yaml/badge.svg)](https://github.com/Pink-Crab/Perique-Queue/actions/workflows/WP_6_9.yaml)
 
 [![codecov](https://codecov.io/gh/Pink-Crab/Perique-Queue/branch/master/graph/badge.svg?token=0sWrPDNZMt)](https://codecov.io/gh/Pink-Crab/Perique-Queue)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/Pink-Crab/Perique-Queue/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/Pink-Crab/Perique-Queue/?branch=master)
-[![Maintainability](https://api.codeclimate.com/v1/badges/6abaf4e934d80a1634b2/maintainability)](https://codeclimate.com/github/Pink-Crab/Perique-Queue/maintainability)
 
 ## Why?
 
@@ -45,9 +43,11 @@ $factory = (new App_Factory(__DIR__))
 
 #### Action Scheduler
 
-Out of the box Perique Queue uses the Action Scheduler to run the queue. This is the recommended way to use the queue, as it is the most reliable and performant. Nothing further is required during setup to use the Action Scheduler. 
+Out of the box Perique Queue uses the Action Scheduler to run the queue. This is the recommended way to use the queue, as it is the most reliable and performant. Nothing further is required during setup to use the Action Scheduler.
 
-> If the site has WooCommerce or any other plugin which includes the Action Scheduler, this will be used instead of the Perique Queue version and no changes are required.
+As of v2.2.0 Action Scheduler is pulled in as a composer dependency (`woocommerce/action-scheduler: 3.9.*`) rather than vendored into the repo. The module loads it from `vendor/woocommerce/action-scheduler/action-scheduler.php` by default. The path can still be overridden via the `pinkcrab_queue_action_scheduler_path` filter — useful if WooCommerce or another plugin has already loaded a copy and you want Perique Queue to reuse it.
+
+> If the site has WooCommerce or any other plugin which includes the Action Scheduler, Action Scheduler's own internal version-selection picks the highest-version copy registered, so no changes are required on the consumer side.
 
 For more details on setting up the module or creating custom drivers, please [see the Module Docs](docs/queue-driver.md) for more details.
 
@@ -127,8 +127,14 @@ class My_Listener extends Abstract_Listener {
 For more details on the `Abstract_Listener` class, please [see the docs here](./docs/event-listener.md).
 
 ## Requires
-* [PinkCrab Perique Framework V2 and above.](https://github.com/Pink-Crab/Perqiue-Framework)
-* PHP7.4+
+* [PinkCrab Perique Framework V2.1 and above.](https://github.com/Pink-Crab/Perqiue-Framework)
+* PHP 8.0+
+
+## Tested Against
+
+* PHP 8.0, 8.1, 8.2, 8.3 & 8.4
+* WP 6.6, 6.7, 6.8 & 6.9
+* MySQL 8.4
 
 ## License
 
@@ -140,6 +146,7 @@ http://www.opensource.org/licenses/mit-license.html
 * For support of all versions before Perique V2, please use version 1.0.* of this module.
 
 ## Change Log ##
+* 2.2.0 - Drop PHP 7.x, require PHP 8.0+. Modernise the tooling chain (PHPStan 2.x at level max, PHPUnit 8|9, WPCS 3.x, phpunit-polyfills widened to include v4). Replace the WP 6.3/6.4/6.5/6.6 workflows with the WP 6.6–6.9 matrix (PHP 8.0–8.4, `mysql:8.4`) using `codecov/codecov-action@v4`. Suppress the WP 6.8 `wp_is_block_theme` early-call notice in `tests/wp-config.php`. Add `.scrutinizer.yml` + `tests/.env` from the canonical sources. **Action Scheduler switched from a vendored `lib/action-scheduler/` copy to a composer dependency (`woocommerce/action-scheduler: 3.9.*` → installs 3.9.3).** Default load path in `Action_Scheduler_Driver::setup()` now points at `vendor/woocommerce/action-scheduler/action-scheduler.php`; the `pinkcrab_queue_action_scheduler_path` filter still overrides for consumers that want to reuse WooCommerce's copy. `tests/bootstrap.php` updated to the new path. Drop the `Codeclimate Maintainability` badge from the README.
 * 2.1.0 - Support for Perique V2.1.* and updated Action Scheduler to 3.9.1
 * 2.0.3 - Updated Action Scheduler to 3.8.2
 * 2.0.2 - Updated Action Scheduler to 3.7.1
