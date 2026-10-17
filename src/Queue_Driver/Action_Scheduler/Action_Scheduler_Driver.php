@@ -27,6 +27,7 @@ namespace PinkCrab\Queue\Queue_Driver\Action_Scheduler;
 
 use DateTimeImmutable;
 use ActionScheduler_Store;
+use Composer\InstalledVersions;
 use PinkCrab\Queue\Event\Event;
 use PinkCrab\Queue\Queue_Driver\Queue;
 use PinkCrab\Queue\Queue_Driver\Action_Scheduler\Action_Scheduler_Dispatcher;
@@ -76,23 +77,8 @@ class Action_Scheduler_Driver implements Queue {
 			return;
 		}
 
-		// Default path to the composer-installed Action Scheduler plugin entry
-		// point (vendor/woocommerce/action-scheduler/action-scheduler.php,
-		// resolved from src/Queue_Driver/Action_Scheduler/ -> project root).
-		$path = join(
-			\DIRECTORY_SEPARATOR,
-			array(
-				dirname( __DIR__, 3 ),
-				'vendor',
-				'woocommerce',
-				'action-scheduler',
-				'action-scheduler.php',
-			)
-		);
-
-		// Consumers can override the path — e.g. to point at a WooCommerce or
-		// third-party plugin's bundled copy of Action Scheduler.
-		$path = apply_filters( 'pinkcrab_queue_action_scheduler_path', $path );
+		// Consumers can override the path, e.g. to reuse WooCommerce's bundled copy.
+		$path = apply_filters( 'pinkcrab_queue_action_scheduler_path', self::default_action_scheduler_path() );
 
 		// Check if the file exists.
 		if ( ! file_exists( $path ) ) {
@@ -104,6 +90,35 @@ class Action_Scheduler_Driver implements Queue {
 
 		// Mark as included.
 		self::$included = true;
+	}
+
+	/**
+	 * Get the path to the composer-installed Action Scheduler entry file.
+	 *
+	 * @return string
+	 */
+	private static function default_action_scheduler_path(): string {
+		$package = 'woocommerce/action-scheduler';
+
+		// Resolve the package wherever Composer installed it.
+		if ( class_exists( InstalledVersions::class ) && InstalledVersions::isInstalled( $package ) ) {
+			$install_path = InstalledVersions::getInstallPath( $package );
+			if ( is_string( $install_path ) ) {
+				return $install_path . \DIRECTORY_SEPARATOR . 'action-scheduler.php';
+			}
+		}
+
+		// Fallback to the root package vendor directory.
+		return join(
+			\DIRECTORY_SEPARATOR,
+			array(
+				dirname( __DIR__, 3 ),
+				'vendor',
+				'woocommerce',
+				'action-scheduler',
+				'action-scheduler.php',
+			)
+		);
 	}
 
 	/**

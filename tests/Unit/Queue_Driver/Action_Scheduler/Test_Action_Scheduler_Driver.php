@@ -12,6 +12,7 @@
  */
 namespace PinkCrab\Queue\Tests\Unit\Queue_Driver\Action_Scheduler;
 
+use Composer\InstalledVersions;
 use Gin0115\WPUnit_Helpers\Objects;
 use PinkCrab\Queue\Queue_Driver\Action_Scheduler\Action_Scheduler_Driver;
 
@@ -29,5 +30,15 @@ class Test_Action_Scheduler_Driver extends \WP_UnitTestCase {
 
 		// The intnernal flag should be set.
 		$this->assertTrue( Objects::get_property( $driver, 'included' ) );
+	}
+
+	/** @testdox The default Action Scheduler path should be resolved from the composer installed package location */
+	public function test_default_action_scheduler_path_is_resolved_from_composer_install_path() {
+		$driver = Action_Scheduler_Driver::get_instance();
+		$path   = Objects::invoke_method( $driver, 'default_action_scheduler_path' );
+
+		$expected = InstalledVersions::getInstallPath( 'woocommerce/action-scheduler' ) . \DIRECTORY_SEPARATOR . 'action-scheduler.php';
+		$this->assertSame( $expected, $path );
+		$this->assertFileExists( $path );
 	}
 }
