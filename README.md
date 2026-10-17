@@ -146,6 +146,7 @@ http://www.opensource.org/licenses/mit-license.html
 * For support of all versions before Perique V2, please use version 1.0.* of this module.
 
 ## Change Log ##
+* 2.1.2 - Default Action Scheduler path is now resolved via `Composer\InstalledVersions`, so it works when Perique Queue is installed as a dependency, not only as the root package (fixes #26). `woocommerce/action-scheduler` bumped to `4.2.*`. Requires `composer-runtime-api: ^2.0`.
 * 2.1.1 - Drop PHP 7.x, require PHP 8.0+. Modernise the tooling chain (PHPStan 2.x at level max, PHPUnit 8|9, WPCS 3.x, phpunit-polyfills widened to include v4). Replace the WP 6.3/6.4/6.5/6.6 workflows with the WP 6.6–6.9 matrix (PHP 8.0–8.4, `mysql:8.4`) using `codecov/codecov-action@v4`. Suppress the WP 6.8 `wp_is_block_theme` early-call notice in `tests/wp-config.php`. Add `.scrutinizer.yml` + `tests/.env` from the canonical sources. **Action Scheduler switched from a vendored `lib/action-scheduler/` copy to a composer dependency (`woocommerce/action-scheduler: 3.9.*` → installs 3.9.3).** Default load path in `Action_Scheduler_Driver::setup()` now points at `vendor/woocommerce/action-scheduler/action-scheduler.php`; the `pinkcrab_queue_action_scheduler_path` filter still overrides for consumers that want to reuse WooCommerce's copy. `tests/bootstrap.php` updated to the new path. Drop the `Codeclimate Maintainability` badge from the README.
 * 2.1.0 - Support for Perique V2.1.* and updated Action Scheduler to 3.9.1
 * 2.0.3 - Updated Action Scheduler to 3.8.2
