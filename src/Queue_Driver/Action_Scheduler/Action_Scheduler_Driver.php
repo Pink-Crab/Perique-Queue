@@ -95,30 +95,20 @@ class Action_Scheduler_Driver implements Queue {
 	/**
 	 * Get the path to the composer-installed Action Scheduler entry file.
 	 *
-	 * @return string
+	 * @param string $package The composer package name.
+	 * @return string Empty string if the package has no install path.
 	 */
-	private static function default_action_scheduler_path(): string {
-		$package = 'woocommerce/action-scheduler';
-
-		// Resolve the package wherever Composer installed it.
-		if ( class_exists( InstalledVersions::class ) && InstalledVersions::isInstalled( $package ) ) {
-			$install_path = InstalledVersions::getInstallPath( $package );
-			if ( is_string( $install_path ) ) {
-				return $install_path . \DIRECTORY_SEPARATOR . 'action-scheduler.php';
-			}
+	private static function default_action_scheduler_path( string $package = 'woocommerce/action-scheduler' ): string {
+		if ( ! InstalledVersions::isInstalled( $package ) ) {
+			return '';
 		}
 
-		// Fallback to the root package vendor directory.
-		return join(
-			\DIRECTORY_SEPARATOR,
-			array(
-				dirname( __DIR__, 3 ),
-				'vendor',
-				'woocommerce',
-				'action-scheduler',
-				'action-scheduler.php',
-			)
-		);
+		$install_path = InstalledVersions::getInstallPath( $package );
+		if ( ! is_string( $install_path ) ) {
+			return '';
+		}
+
+		return $install_path . \DIRECTORY_SEPARATOR . 'action-scheduler.php';
 	}
 
 	/**
