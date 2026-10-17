@@ -42,8 +42,9 @@
     },
     "require": {
         "php": ">=8.0.0",
+        "composer-runtime-api": "^2.0",
         "pinkcrab/perique-framework-core": "2.1.*",
-        "woocommerce/action-scheduler": "3.9.*"
+        "woocommerce/action-scheduler": "4.2.*"
     },
     "scripts": {
         "test": "vendor/bin/phpunit --colors=always --testdox --coverage-clover clover.xml",

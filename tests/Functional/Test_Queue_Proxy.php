@@ -15,6 +15,8 @@ namespace PinkCrab\Queue\Tests\Functional;
 use DateTimeImmutable;
 use PinkCrab\Queue\Dispatch\Queue;
 use Gin0115\WPUnit_Helpers\Objects;
+use PinkCrab\Queue\Dispatch\Queue_Service;
+use PinkCrab\Perique\Interfaces\DI_Container;
 use PinkCrab\Queue\Event\Async_Event;
 use PinkCrab\Queue\Event\Delayed_Event;
 use PinkCrab\Queue\Tests\Functional\Abstract_Functional_Test;
@@ -152,6 +154,31 @@ class Test_Queue_Proxy extends Abstract_Functional_Test {
 
         // Check exists.
         $this->assertTrue( Queue::exists( $event ) );
+    }
+
+    /** @testdox If the Queue_Service can not be resolved on the first attempt, the proxy should try again */
+    public function test_proxy_retries_if_queue_service_not_resolved(): void {
+        $service = new Queue_Service( $this->queue );
+
+        // Container returns null on the first call, then the service.
+        $container = $this->createMock( DI_Container::class );
+        $container->expects( $this->exactly( 2 ) )
+            ->method( 'create' )
+            ->with( Queue_Service::class )
+            ->willReturnOnConsecutiveCalls( null, $service );
+        Objects::set_property( $this->perique, 'container', $container );
+
+        // Clear the cached service, restored after the test.
+        $instance = new \ReflectionProperty( Queue::class, 'instance' );
+        $instance->setAccessible( true );
+        $cached = $instance->getValue();
+        $instance->setValue( null, null );
+
+        try {
+            $this->assertSame( $service, Queue::service() );
+        } finally {
+            $instance->setValue( null, $cached );
+        }
     }
 
     /**

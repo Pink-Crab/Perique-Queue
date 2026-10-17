@@ -45,7 +45,7 @@ $factory = (new App_Factory(__DIR__))
 
 Out of the box Perique Queue uses the Action Scheduler to run the queue. This is the recommended way to use the queue, as it is the most reliable and performant. Nothing further is required during setup to use the Action Scheduler.
 
-As of v2.1.1 Action Scheduler is pulled in as a composer dependency (`woocommerce/action-scheduler: 3.9.*`) rather than vendored into the repo. The module loads it from `vendor/woocommerce/action-scheduler/action-scheduler.php` by default. The path can still be overridden via the `pinkcrab_queue_action_scheduler_path` filter — useful if WooCommerce or another plugin has already loaded a copy and you want Perique Queue to reuse it.
+Action Scheduler is pulled in as a composer dependency (`woocommerce/action-scheduler: 4.2.*`) rather than vendored into the repo. By default the module loads `action-scheduler.php` from wherever Composer installed the `woocommerce/action-scheduler` package (resolved via `Composer\InstalledVersions`), so it works both as the root package and when installed as a dependency of a plugin or theme. The path can still be overridden via the `pinkcrab_queue_action_scheduler_path` filter, useful if WooCommerce or another plugin has already loaded a copy and you want Perique Queue to reuse it.
 
 > If the site has WooCommerce or any other plugin which includes the Action Scheduler, Action Scheduler's own internal version-selection picks the highest-version copy registered, so no changes are required on the consumer side.
 
